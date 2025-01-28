@@ -23,7 +23,7 @@ body {
 
 /* Styling for links */
 a {
-    color: darkblue;
+    font-weight: bold;
     text-decoration: none;
 }
 a:hover {
