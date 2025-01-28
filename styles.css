@@ -1,0 +1,46 @@
+/* External CSS file for index.html */
+
+/* General styles for the body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Class to center elements */
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ID for specific sections */
+#highlight {
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Styling for links */
+a {
+    color: darkblue;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design using media queries */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+}
