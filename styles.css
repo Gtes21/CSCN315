@@ -1,4 +1,4 @@
-/* External CSS file for index.html */
+/* External CSS file for website */
 
 /* General styles for the body */
 body {
@@ -7,6 +7,21 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     text-align: center;
+}
+
+/* Styling for navigation bar */
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: underline;
 }
 
 /* Class to center elements */
@@ -21,13 +36,17 @@ body {
     text-decoration: underline;
 }
 
-/* Styling for links */
-a {
-    font-weight: bold;
-    text-decoration: none;
+/* Styling for buttons */
+button {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
 }
-a:hover {
-    text-decoration: underline;
+button:hover {
+    background-color: #005f73;
 }
 
 /* Responsive design using media queries */
@@ -35,11 +54,9 @@ a:hover {
     body {
         font-size: 14px;
     }
-
     h1 {
         font-size: 20px;
     }
-
     p {
         font-size: 12px;
     }

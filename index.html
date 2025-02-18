@@ -3,45 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Page</title>
-    <!-- Link to external CSS file -->
+    <title>Home</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // JavaScript Example: Change Background Color
+        function changeColor() {
+            document.body.style.backgroundColor = '#f4f4f4';
+            alert('Background color changed!');
+        }
+    </script>
 </head>
 <body>
-    <header class="center">
-        <label>Who's visiting here?</label>
-        <input type="text"><br>
-        <input type="submit">
-    </header>
-
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="education.html">Education</a> |
+        <a href="experience.html">Experience</a> |
+        <a href="skills.html">Skills</a>
+    </nav>
+    
     <main>
-        <!-- About Myself -->
-        <h1>Where I am from</h1>
-        <p>South Korea</p>
-
-        <h1>My major and year</h1>
-        <p>Computer Science - Software Engineering<br> Computer Science - General</p>
-
-        <h1>Interesting information</h1>
-        <ul class="center">
-            <li>I've served my Korean military duty for 2 years and then took a gap year, so I will be 25 soon on February while I am a junior yet.</li>
-            <li>I have graduated LCA and enrolled LU in 2019.</li>
-            <li>I root for a Korean rock band called 'Nell', and this is their website: <a href="http://www.spacebohemian.com/front/" target="_blank">Space Bohemian</a></li>
+        <h1>Welcome to My Website</h1>
+        <p>Hello, my name is [Your Name], and this website is about me!</p>
+        
+        <h2>Quick Info</h2>
+        <ul>
+            <li>From: South Korea</li>
+            <li>Major: Computer Science - Software Engineering & General</li>
+            <li>Interests: Competitive programming, Korean rock music</li>
         </ul>
 
-        <h1">An idea for the website that I will build in this class throughout the semester</h1>
-        <p>I have not decided yet, but it may be a portfolio or resume-like website about myself</p>
-
-        <!-- Hyperlink to navigate to the education page -->
-        <a href="education.html" id="highlight">Go to Education Page</a>
+        <button onclick="changeColor()">Change Background Color</button>
     </main>
-
+    
     <footer>
-        <form>
-            <label>Pick a color:</label>
-            <input type="color"><br><br>
-            <input type="submit">
-        </form>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
     </footer>
 </body>
 </html>
