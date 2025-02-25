@@ -35,12 +35,17 @@ function getStudentCategory(score) {
     }
 }
 
-// Loop through the students array and display results
-for (let i = 0; i < students.length; i++) {
-    let student = students[i];
-    console.log(`Student: ${student.name}`);
-    console.log(`Score: ${student.score}`);
-    console.log(`Performance: ${evaluateScore(student.score)}`);
-    console.log(`Category: ${getStudentCategory(student.score)}`);
-    console.log("----------------------");
-}
+// Get the output div
+const outputDiv = document.getElementById("output");
+
+// Loop through the students array and display results on the webpage
+students.forEach(student => {
+    let studentInfo = `
+        <h2>Student: ${student.name}</h2>
+        <p>Score: ${student.score}</p>
+        <p>Performance: ${evaluateScore(student.score)}</p>
+        <p>Category: ${getStudentCategory(student.score)}</p>
+        <hr>
+    `;
+    outputDiv.innerHTML += studentInfo;
+});
