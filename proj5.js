@@ -13,11 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
     overlay.style.alignItems = "center";
     overlay.style.zIndex = "1000";
 
-    // Create the overlay image
+    // Create the overlay image (Using createElement())
     const overlayImage = document.createElement("img");
-    overlayImage.style.maxWidth = "90%";
-    overlayImage.style.maxHeight = "90%";
-    overlay.appendChild(overlayImage);
+    overlayImage.style.width = "40%";  // Reduced size to 40% of screen width
+    overlayImage.style.maxHeight = "50%";  // Prevents it from being too large
+    overlayImage.style.border = "3px solid white";
+    overlayImage.style.boxShadow = "0px 0px 10px white";
+    overlayImage.style.opacity = "0.9";
+    overlay.appendChild(overlayImage); //appendChild()
 
     // Close overlay when clicked
     overlay.addEventListener("click", function () {
@@ -29,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add click event to all images
     document.querySelectorAll(".clickable-image").forEach(image => {
         image.addEventListener("click", function () {
-            overlayImage.src = this.src;
+            overlayImage.src = this.dataset.altSrc || this.src;
             overlay.style.display = "flex";
         });
     });

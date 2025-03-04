@@ -64,11 +64,10 @@ button:hover {
 
 /* Styling for overlay */
 #imageOverlay img {
-    border-radius: 10px;
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
 }
 
 #imageOverlay img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
