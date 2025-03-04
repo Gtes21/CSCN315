@@ -82,7 +82,7 @@ button:hover {
 /* Ensure images fit within the body without overflowing */
 .clickable-image {
     display: block;
-    max-width: 80%; /* Adjust width so it fits well */
+    width: 6em;
     height: auto; /* Maintain aspect ratio */
     margin: 20px auto; /* Center the image with spacing */
 }
