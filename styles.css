@@ -63,11 +63,18 @@ button:hover {
 }
 
 /* Styling for overlay */
+#imageOverlay {
+    position: absolute;
+    top: 80px; /* Ensures it starts below the navigation bar */
+    text-align: center;
+}
+
 #imageOverlay img {
-    border-radius: 8px;
+    width: 100%;
+    max-width: 600px; /* Ensures image doesn't stretch */
     transition: transform 0.2s ease-in-out;
 }
 
 #imageOverlay img:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
