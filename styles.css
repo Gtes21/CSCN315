@@ -78,3 +78,11 @@ button:hover {
 #imageOverlay img:hover {
     transform: scale(1.02);
 }
+
+/* Ensure images fit within the body without overflowing */
+.clickable-image {
+    display: block;
+    max-width: 80%; /* Adjust width so it fits well */
+    height: auto; /* Maintain aspect ratio */
+    margin: 20px auto; /* Center the image with spacing */
+}
