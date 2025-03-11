@@ -16,30 +16,38 @@
     </nav>
     
     <main>
-        <h1>User Information Form</h1>
-        <img src="myPhoto.jpg" data-alt-src="Torso.jpg" class="clickable-image" alt="Sample Image">
-        <form id="registrationForm">
-            <label>Full Name: <input type="text" name="fullName" required></label><br>
-            <label>Username: <input type="text" name="username" required></label><br>
-            <label>Email: <input type="email" name="email" required></label><br>
-            <label>Password: <input type="password" name="password" required></label><br>
-            <label>Confirm Password: <input type="password" name="confirmPassword" required></label><br>
-            <label>Phone Number: <input type="text" name="phoneNumber" required></label><br>
-            <label>Date of Birth: <input type="date" name="dob" required></label><br>
-            <label><input type="checkbox" name="agreeTerms"> I agree to the terms</label><br>
-            <button type="submit">Register</button>
-        </form>
-        
-        <p id="formErrors" style="color: red;"></p>
-        
-        <h2>Results</h2>
-        <p id="result"></p>
+        <h1>User Options Form</h1>
+
+        <!-- Requirement #1: Checkboxes and Textbox Selection -->
+        <h2>Choose Your Interests:</h2>
+        <label><input type="checkbox" value="Programming" class="interest"> Programming</label>
+        <label><input type="checkbox" value="Gaming" class="interest"> Gaming</label>
+        <label><input type="checkbox" value="Music" class="interest"> Music</label>
+        <label><input type="checkbox" value="Sports" class="interest"> Sports</label>
+        <br>
+        <input type="text" id="customInterest" placeholder="Add your own interest">
+        <button id="addInterest">Add</button>
+        <h3>Selected Interests:</h3>
+        <ul id="interestList"></ul>
+        <button id="clearInterests">Clear All</button>
+
+        <!-- Requirement #2: Phone Number Input with Regex Validation -->
+        <h2>Enter Your Phone Number:</h2>
+        <input type="text" id="phoneNumber" placeholder="Enter phone number">
+        <button id="validatePhone">Validate</button>
+        <p id="phoneFeedback"></p>
+
+        <!-- Requirement #3: File Upload and Display -->
+        <h2>Upload a File:</h2>
+        <input type="file" id="fileUpload">
+        <button id="readFile">Read File</button>
+        <pre id="fileContents"></pre>
     </main>
     
     <footer>
         <p>&copy; 2025 Sangcheon Kim. All rights reserved.</p>
     </footer>
-    <script defer src="proj5.js"></script>
-    <script defer src="proj6.js"></script>
+
+    <script defer src="proj7.js"></script>
 </body>
 </html>
