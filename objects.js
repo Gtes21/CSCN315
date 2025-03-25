@@ -1,6 +1,6 @@
 // objects.js
 
-// Define a Task class using ES6 syntax
+// Task class for managing individual tasks
 class Task {
     constructor(title, description) {
         this.title = title;
@@ -8,22 +8,19 @@ class Task {
         this.completed = false;
     }
 
-    // Mark task as completed
+    // Mark this task as completed
     markCompleted() {
         this.completed = true;
     }
 
-    // Update task details
+    // Update the task title and description
     updateDetails(newTitle, newDescription) {
         this.title = newTitle;
         this.description = newDescription;
     }
 
-    // Get task summary
+    // Return a summary of the task
     getSummary() {
-        return `${this.title}: ${this.description} [${this.completed ? 'Completed' : 'Pending'}]`;
+        return `${this.title}: ${this.description} [${this.completed ? '✅ Completed' : '❌ Pending'}]`;
     }
 }
-
-// Export the class if using module system (optional if embedding in the browser)
-// export default Task;
