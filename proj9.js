@@ -6,7 +6,8 @@ function getQueryParams() {
     return {
         bgColor: params.get('bgColor'),
         textColor: params.get('textColor'),
-        fontSize: params.get('fontSize')
+        fontSize: params.get('fontSize'),
+        fontFamily: params.get('fontFamily')
     };
 }
 
@@ -31,6 +32,7 @@ function applyPreferences(prefs) {
     if (prefs.bgColor) document.body.style.backgroundColor = prefs.bgColor;
     if (prefs.textColor) document.body.style.color = prefs.textColor;
     if (prefs.fontSize) document.body.style.fontSize = prefs.fontSize;
+    if (prefs.fontFamily) document.body.style.fontFamily = prefs.fontFamily;
 }
 
 // Main logic to run on page load
@@ -50,7 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const savedPrefs = {
             bgColor: getCookie('bgColor'),
             textColor: getCookie('textColor'),
-            fontSize: getCookie('fontSize')
+            fontSize: getCookie('fontSize'),
+            fontFamily: getCookie('fontFamily')
         };
         applyPreferences(savedPrefs);
     }
