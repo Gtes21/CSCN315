@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customize Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Customize This Page</h1>
+
+    <form id="customForm" action="customize.html" method="GET">
+        <label>Background Color:
+            <input type="color" name="bgColor" value="#ffffff">
+        </label><br>
+
+        <label>Text Color:
+            <input type="color" name="textColor" value="#000000">
+        </label><br>
+
+        <label>Font Size:
+            <select name="fontSize">
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+                <option value="24px">24px</option>
+            </select>
+        </label><br>
+
+        <button type="submit">Apply Customization</button>
+    </form>
+
+    <p>This is a sample paragraph to demonstrate your selected styles. 🎨</p>
+
+    <script defer src="proj9.js"></script>
+</body>
+</html>
