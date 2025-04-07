@@ -3,6 +3,8 @@
 let startTime;
 let timerInterval;
 let correctCount = 0;
+var img = document.createElement('img');
+    img.src = 'concert.jpeg';
 
 // Start timer
 function startTimer() {
@@ -43,7 +45,7 @@ function initPuzzle() {
     div.classList.add("puzzle-piece");
     div.setAttribute("draggable", true);
     div.setAttribute("data-id", i);
-    div.style.backgroundImage = "url('concert.jpeg')";
+    div.style.backgroundImage = `url('${img.src}')`;
     div.style.backgroundPosition = `-${(i % 3) * 100}px -${Math.floor(i / 3) * 100}px`;
 
     div.addEventListener("dragstart", dragStart);
