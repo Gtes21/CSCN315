@@ -4,8 +4,7 @@ let startTime, timerInterval;
 let correctCount = 0;
 const gridSize = 3;
 const totalPieces = gridSize * gridSize;
-let originalOrder = [];
-let shuffledOrder = [];
+let positions = [];
 
 function startTimer() {
     startTime = Date.now();
@@ -28,93 +27,129 @@ function shuffleArray(arr) {
     return shuffled;
 }
 
-// Create grid of image tiles
 function createPuzzleGrid(imageSrc) {
     const board = document.getElementById("puzzle-board");
     board.innerHTML = '';
     document.getElementById("message").textContent = '';
+    document.getElementById("timer").textContent = 'Time: 0s';
     correctCount = 0;
 
-    originalOrder = Array.from({ length: totalPieces }, (_, i) => i);
-    shuffledOrder = shuffleArray(originalOrder);
+    positions = Array.from({ length: totalPieces }, (_, i) => i);
+    const shuffled = shuffleArray(positions);
 
+    // Create drop zones first
     for (let i = 0; i < totalPieces; i++) {
-        const tile = document.createElement("div");
-        tile.classList.add("puzzle-tile");
-        tile.setAttribute("draggable", true);
-        tile.setAttribute("data-index", shuffledOrder[i]);
-        tile.setAttribute("data-correct", shuffledOrder[i]);
-
-        tile.style.backgroundImage = `url('${imageSrc}')`;
-        tile.style.backgroundSize = `${gridSize * 100}px ${gridSize * 100}px`;
-
-        const row = Math.floor(shuffledOrder[i] / gridSize);
-        const col = shuffledOrder[i] % gridSize;
-
-        tile.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
-
-        // Create drop zone for each correct position
         const dropZone = document.createElement("div");
         dropZone.classList.add("drop-zone");
-        dropZone.setAttribute("data-correct", i);
+        dropZone.dataset.position = i;
 
         dropZone.addEventListener("dragover", dragOver);
         dropZone.addEventListener("drop", drop);
 
+        board.appendChild(dropZone);
+    }
+
+    // Create shuffled tiles
+    shuffled.forEach((originalIndex) => {
+        const tile = document.createElement("div");
+        tile.classList.add("puzzle-tile");
+        tile.setAttribute("draggable", true);
+        tile.dataset.original = originalIndex;
+
+        const row = Math.floor(originalIndex / gridSize);
+        const col = originalIndex % gridSize;
+
+        tile.style.backgroundImage = `url('${imageSrc}')`;
+        tile.style.backgroundSize = `${gridSize * 100}px ${gridSize * 100}px`;
+        tile.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
+
         tile.addEventListener("dragstart", dragStart);
         tile.addEventListener("dragend", dragEnd);
 
-        dropZone.appendChild(tile);
-        board.appendChild(dropZone);
-    }
+        const availableDropZones = document.querySelectorAll(".drop-zone");
+        const randomSlot = availableDropZones[Math.floor(Math.random() * availableDropZones.length)];
+
+        if (!randomSlot.hasChildNodes()) {
+            randomSlot.appendChild(tile);
+        } else {
+            board.appendChild(tile); // Fallback in case random spot was filled
+        }
+    });
 
     startTimer();
 }
 
-// Drag-and-drop events
+// Drag-and-drop logic
 let draggedTile = null;
 
 function dragStart(e) {
     draggedTile = this;
-    setTimeout(() => this.style.visibility = "hidden", 0);
+    setTimeout(() => (this.style.visibility = 'hidden'), 0);
 }
 
 function dragEnd(e) {
-    this.style.visibility = "visible";
+    this.style.visibility = 'visible';
     draggedTile = null;
 }
 
 function dragOver(e) {
     e.preventDefault();
+    this.classList.add("dragover");
 }
 
 function drop(e) {
     e.preventDefault();
+    this.classList.remove("dragover");
+
+    if (!draggedTile) return;
+
     const dropZone = this;
-    const correctPos = dropZone.getAttribute("data-correct");
-    const droppedIndex = draggedTile.getAttribute("data-index");
 
-    // Allow only if drop zone is empty and this is the correct place
-    if (correctPos === droppedIndex && dropZone.children.length === 0) {
+    // Allow swapping if target is empty or occupied
+    if (dropZone.children.length === 0) {
         dropZone.appendChild(draggedTile);
-        draggedTile.setAttribute("draggable", false);
-        draggedTile.style.cursor = "default";
-        correctCount++;
+    } else {
+        const existingTile = dropZone.firstElementChild;
+        const parentOfDragged = draggedTile.parentElement;
 
-        if (correctCount === totalPieces) {
-            stopTimer();
-            document.getElementById("message").textContent = "🎉 Puzzle Solved!";
+        dropZone.appendChild(draggedTile);
+        parentOfDragged.appendChild(existingTile);
+    }
+
+    checkCompletion();
+}
+
+function checkCompletion() {
+    const allZones = document.querySelectorAll('.drop-zone');
+    let solved = 0;
+
+    allZones.forEach(zone => {
+        const correctPos = parseInt(zone.dataset.position);
+        const tile = zone.firstElementChild;
+
+        if (tile && parseInt(tile.dataset.original) === correctPos) {
+            solved++;
+            tile.setAttribute("draggable", false);
+            tile.style.cursor = "default";
+        } else if (tile) {
+            tile.setAttribute("draggable", true);
+            tile.style.cursor = "grab";
         }
+    });
+
+    if (solved === totalPieces) {
+        stopTimer();
+        document.getElementById("message").textContent = "🎉 Puzzle Solved!";
     }
 }
 
-// Reset the game
+// Reset
 function resetGame(imageSrc) {
     stopTimer();
     createPuzzleGrid(imageSrc);
 }
 
-// Main entry
+// Init handlers
 document.addEventListener("DOMContentLoaded", () => {
     const fileInput = document.getElementById("imageInput");
     const resetBtn = document.getElementById("resetBtn");
@@ -131,10 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     resetBtn.addEventListener("click", () => {
-        const currentImage = document.querySelector(".puzzle-tile");
-        if (currentImage) {
-            const bg = currentImage.style.backgroundImage;
-            const src = bg.slice(5, -2); // extract URL('...') safely
+        const currentTile = document.querySelector(".puzzle-tile");
+        if (currentTile) {
+            const bg = currentTile.style.backgroundImage;
+            const src = bg.slice(5, -2);
             resetGame(src);
         }
     });
