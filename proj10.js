@@ -1,117 +1,141 @@
 // proj10.js
 
-let startTime;
-let timerInterval;
+let startTime, timerInterval;
 let correctCount = 0;
-var img = document.createElement('img');
-    img.src = 'concert.jpeg';
+const gridSize = 3;
+const totalPieces = gridSize * gridSize;
+let originalOrder = [];
+let shuffledOrder = [];
 
-// Start timer
 function startTimer() {
-  startTime = Date.now();
-  timerInterval = setInterval(() => {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    document.getElementById("timer").textContent = `Time: ${elapsed}s`;
-  }, 1000);
+    startTime = Date.now();
+    timerInterval = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        document.getElementById("timer").textContent = `Time: ${elapsed}s`;
+    }, 1000);
 }
 
-// Stop timer
 function stopTimer() {
-  clearInterval(timerInterval);
+    clearInterval(timerInterval);
 }
 
-// Shuffle array
 function shuffleArray(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
 }
 
-// Create puzzle pieces
-function initPuzzle() {
-  const board = document.getElementById("puzzle-board");
-  board.innerHTML = '';
-  correctCount = 0;
-  document.getElementById("message").textContent = '';
+// Create grid of image tiles
+function createPuzzleGrid(imageSrc) {
+    const board = document.getElementById("puzzle-board");
+    board.innerHTML = '';
+    document.getElementById("message").textContent = '';
+    correctCount = 0;
 
-  const pieces = [];
-  for (let i = 0; i < 9; i++) pieces.push(i);
+    originalOrder = Array.from({ length: totalPieces }, (_, i) => i);
+    shuffledOrder = shuffleArray(originalOrder);
 
-  shuffleArray(pieces);
+    for (let i = 0; i < totalPieces; i++) {
+        const tile = document.createElement("div");
+        tile.classList.add("puzzle-tile");
+        tile.setAttribute("draggable", true);
+        tile.setAttribute("data-index", shuffledOrder[i]);
+        tile.setAttribute("data-correct", shuffledOrder[i]);
 
-  pieces.forEach((i, idx) => {
-    const div = document.createElement("div");
-    div.classList.add("puzzle-piece");
-    div.setAttribute("draggable", true);
-    div.setAttribute("data-id", i);
-    div.style.backgroundImage = `url('${img.src}')`;
-    div.style.backgroundPosition = `-${(i % 3) * 100}px -${Math.floor(i / 3) * 100}px`;
+        tile.style.backgroundImage = `url('${imageSrc}')`;
+        tile.style.backgroundSize = `${gridSize * 100}px ${gridSize * 100}px`;
 
-    div.addEventListener("dragstart", dragStart);
-    div.addEventListener("dragend", dragEnd);
+        const row = Math.floor(shuffledOrder[i] / gridSize);
+        const col = shuffledOrder[i] % gridSize;
 
-    const slot = document.createElement("div");
-    slot.classList.add("dropzone");
-    slot.dataset.correct = i;
-    slot.addEventListener("dragover", dragOver);
-    slot.addEventListener("drop", drop);
-    slot.appendChild(div);
+        tile.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
 
-    board.appendChild(slot);
-  });
+        // Create drop zone for each correct position
+        const dropZone = document.createElement("div");
+        dropZone.classList.add("drop-zone");
+        dropZone.setAttribute("data-correct", i);
 
-  startTimer();
+        dropZone.addEventListener("dragover", dragOver);
+        dropZone.addEventListener("drop", drop);
+
+        tile.addEventListener("dragstart", dragStart);
+        tile.addEventListener("dragend", dragEnd);
+
+        dropZone.appendChild(tile);
+        board.appendChild(dropZone);
+    }
+
+    startTimer();
 }
 
-// Drag & drop handlers
-let draggedPiece;
+// Drag-and-drop events
+let draggedTile = null;
 
 function dragStart(e) {
-  draggedPiece = this;
-  setTimeout(() => this.style.display = 'none', 0);
+    draggedTile = this;
+    setTimeout(() => this.style.visibility = "hidden", 0);
 }
 
-function dragEnd() {
-  draggedPiece.style.display = 'block';
-  draggedPiece = null;
+function dragEnd(e) {
+    this.style.visibility = "visible";
+    draggedTile = null;
 }
 
 function dragOver(e) {
-  e.preventDefault();
-  this.classList.add("dragover");
+    e.preventDefault();
 }
 
 function drop(e) {
-  e.preventDefault();
-  this.classList.remove("dragover");
+    e.preventDefault();
+    const dropZone = this;
+    const correctPos = dropZone.getAttribute("data-correct");
+    const droppedIndex = draggedTile.getAttribute("data-index");
 
-  const droppedOn = this;
-  const correctId = droppedOn.dataset.correct;
-  const draggedId = draggedPiece.dataset.id;
+    // Allow only if drop zone is empty and this is the correct place
+    if (correctPos === droppedIndex && dropZone.children.length === 0) {
+        dropZone.appendChild(draggedTile);
+        draggedTile.setAttribute("draggable", false);
+        draggedTile.style.cursor = "default";
+        correctCount++;
 
-  if (correctId === draggedId && droppedOn.children.length === 0) {
-    droppedOn.appendChild(draggedPiece);
-    draggedPiece.setAttribute("draggable", false);
-    draggedPiece.style.cursor = "default";
-    correctCount++;
-
-    if (correctCount === 9) {
-      stopTimer();
-      document.getElementById("message").textContent = "🎉 Puzzle Completed!";
+        if (correctCount === totalPieces) {
+            stopTimer();
+            document.getElementById("message").textContent = "🎉 Puzzle Solved!";
+        }
     }
-  } else {
-    // Optional: provide feedback for incorrect drop
-  }
 }
 
-// Reset game
-document.getElementById("resetBtn").addEventListener("click", () => {
-  stopTimer();
-  initPuzzle();
-});
+// Reset the game
+function resetGame(imageSrc) {
+    stopTimer();
+    createPuzzleGrid(imageSrc);
+}
 
-// Init game on load
+// Main entry
 document.addEventListener("DOMContentLoaded", () => {
-  initPuzzle();
+    const fileInput = document.getElementById("imageInput");
+    const resetBtn = document.getElementById("resetBtn");
+
+    fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                createPuzzleGrid(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    resetBtn.addEventListener("click", () => {
+        const currentImage = document.querySelector(".puzzle-tile");
+        if (currentImage) {
+            const bg = currentImage.style.backgroundImage;
+            const src = bg.slice(5, -2); // extract URL('...') safely
+            resetGame(src);
+        }
+    });
 });
