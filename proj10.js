@@ -70,10 +70,13 @@ function createPuzzleGrid(imageSrc) {
         const availableDropZones = document.querySelectorAll(".drop-zone");
         const randomSlot = availableDropZones[Math.floor(Math.random() * availableDropZones.length)];
 
-        if (!randomSlot.hasChildNodes()) {
-            randomSlot.appendChild(tile);
-        } else {
-            board.appendChild(tile); // Fallback in case random spot was filled
+        let placed = false;
+        for (let zone of availableDropZones) {
+            if (!zone.hasChildNodes()) {
+                zone.appendChild(tile);
+                placed = true;
+                break;
+            }
         }
     });
 

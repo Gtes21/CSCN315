@@ -92,25 +92,29 @@ button:hover {
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
     gap: 0;
-    margin: auto;
-  }
+    margin: 20px auto; /* Center the grid */
+    justify-content: center;
+}
   
-  .drop-zone {
+.drop-zone {
     width: 100px;
     height: 100px;
     border: 1px solid transparent;
     overflow: hidden;
     position: relative;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
-  .puzzle-tile {
+.puzzle-tile {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
     background-size: 300px 300px;
     background-position: center;
     cursor: grab;
-  }
+}
 
 .dragover {
     border: 2px solid #0077ff;
