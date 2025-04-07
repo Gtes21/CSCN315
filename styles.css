@@ -86,3 +86,45 @@ button:hover {
     height: auto; /* Maintain aspect ratio */
     margin: 20px auto; /* Center the image with spacing */
 }
+
+#puzzle-board {
+display: grid;
+grid-template-columns: repeat(3, 100px);
+grid-template-rows: repeat(3, 100px);
+gap: 5px;
+justify-content: center;
+margin-top: 20px;
+}
+
+.puzzle-piece {
+width: 100px;
+height: 100px;
+background-size: 300px 300px;
+border: 1px solid #333;
+cursor: grab;
+transition: transform 0.2s;
+}
+
+.puzzle-piece:hover {
+transform: scale(1.05);
+}
+
+.dropzone {
+border: 2px dashed transparent;
+}
+
+.dropzone.dragover {
+border-color: #0077ff;
+}
+
+#controls {
+margin-bottom: 20px;
+}
+
+#message {
+margin-top: 10px;
+font-size: 18px;
+font-weight: bold;
+color: green;
+}
+  
