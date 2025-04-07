@@ -32,6 +32,7 @@ function createPuzzleGrid(imageSrc) {
     board.innerHTML = '';
     document.getElementById("message").textContent = '';
     document.getElementById("timer").textContent = 'Time: 0s';
+    document.querySelector(".puzzle-board").style.gap = "1px";
     correctCount = 0;
 
     positions = Array.from({ length: totalPieces }, (_, i) => i);
@@ -140,6 +141,18 @@ function checkCompletion() {
     if (solved === totalPieces) {
         stopTimer();
         document.getElementById("message").textContent = "🎉 Puzzle Solved!";
+
+        // Remove tile borders for a seamless finish
+        document.querySelectorAll(".drop-zone").forEach(zone => {
+            zone.style.border = "none";
+        });
+
+        document.querySelectorAll(".puzzle-tile").forEach(tile => {
+            tile.style.border = "none";
+        });
+
+        // Remove grid gaps to merge images perfectly
+        document.querySelector(".puzzle-board").style.gap = "0";
     }
 }
 
