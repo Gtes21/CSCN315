@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cat API Viewer 😺</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Meow Viewer with Cat API 🐾</h1>
+
+  <button id="loadCats">Load Cats</button>
+
+  <div class="cat-container">
+    <div class="cat-box">
+      <h2>Cat via <code>fetch()</code></h2>
+      <img id="fetchCat" src="" alt="Random Cat (Fetch)">
+      <p id="fetchError" class="error"></p>
+    </div>
+
+    <div class="cat-box">
+      <h2>Cat via <code>XMLHttpRequest</code></h2>
+      <img id="xhrCat" src="" alt="Random Cat (XHR)">
+      <p id="xhrError" class="error"></p>
+    </div>
+  </div>
+
+  <script defer src="proj11.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     text-align: center;
+    padding: 20px;
 }
 
 /* Styling for navigation bar */
@@ -44,6 +45,8 @@ button {
     border: none;
     cursor: pointer;
     margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
 }
 button:hover {
     background-color: #005f73;
@@ -131,3 +134,33 @@ button:hover {
     color: green;
 }
     
+h1 {
+    color: #333;
+  }
+
+.cat-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  
+.cat-box {
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+.cat-box img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+.error {
+    color: red;
+    margin-top: 10px;
+  }
