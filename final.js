@@ -94,44 +94,41 @@ document.addEventListener("DOMContentLoaded", () => {
         fontFamily: params.get('fontFamily')
       };
     }
-
+  
     function setCookie(name, value, days) {
       const expires = new Date(Date.now() + days * 864e5).toUTCString();
       document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
     }
-
+  
     function getCookie(name) {
       return document.cookie.split('; ').reduce((acc, cur) => {
         const [k, v] = cur.split('=');
         return k === name ? decodeURIComponent(v) : acc;
       }, null);
     }
-
+  
     function applyPreferences(prefs) {
       if (prefs.bgColor) document.body.style.backgroundColor = prefs.bgColor;
       if (prefs.textColor) document.body.style.color = prefs.textColor;
       if (prefs.fontSize) document.body.style.fontSize = prefs.fontSize;
       if (prefs.fontFamily) document.body.style.fontFamily = prefs.fontFamily;
     }
-
-    // Run on every page to apply saved settings
-    const savedPrefs = {
-      bgColor: getCookie("bgColor"),
-      textColor: getCookie("textColor"),
-      fontSize: getCookie("fontSize"),
-      fontFamily: getCookie("fontFamily")
-    };
-    applyPreferences(savedPrefs);
-
-    // Handle customization form only on that page
+  
     if (document.getElementById("customForm")) {
       const prefs = getQueryParams();
       if (prefs.bgColor || prefs.textColor || prefs.fontSize || prefs.fontFamily) {
         applyPreferences(prefs);
         Object.entries(prefs).forEach(([k, v]) => v && setCookie(k, v, 7));
+      } else {
+        applyPreferences({
+          bgColor: getCookie("bgColor"),
+          textColor: getCookie("textColor"),
+          fontSize: getCookie("fontSize"),
+          fontFamily: getCookie("fontFamily")
+        });
       }
     }
-      
+  
     // ----------------------
     // 5. Cat API (Fetch & XHR)
     // ----------------------
