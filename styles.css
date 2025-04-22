@@ -13,6 +13,10 @@ body.dark {
   color: white;
 }
 
+body.dark nav {
+  background-color: white;
+}
+
 body.dark #collectionMenu {
   background-color: #333;
   color: white;
@@ -281,15 +285,39 @@ footer {
   margin: 10px auto;
 }
 
+#taskList {
+  width: 100%;
+  max-width: 1100px;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+#taskList th, #taskList td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+#taskList td:nth-child(2) {
+  width: 100%;
+  text-align: left;
+}
+
+#taskList td:nth-child(3),
+#taskList td:nth-child(4),
+#taskList td:nth-child(5) {
+  width: 100px;
+}
+
 .task-small {
-  padding: 4px 10px;
-  margin: 4px;
-  font-size: 14px;
+  padding: 6px 10px;
+  font-size: 13px;
   background-color: #0092c7;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  width: 80px;
 }
 
 .task-small:hover {

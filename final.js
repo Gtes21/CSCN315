@@ -94,41 +94,44 @@ document.addEventListener("DOMContentLoaded", () => {
         fontFamily: params.get('fontFamily')
       };
     }
-  
+
     function setCookie(name, value, days) {
       const expires = new Date(Date.now() + days * 864e5).toUTCString();
       document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
     }
-  
+
     function getCookie(name) {
       return document.cookie.split('; ').reduce((acc, cur) => {
         const [k, v] = cur.split('=');
         return k === name ? decodeURIComponent(v) : acc;
       }, null);
     }
-  
+
     function applyPreferences(prefs) {
       if (prefs.bgColor) document.body.style.backgroundColor = prefs.bgColor;
       if (prefs.textColor) document.body.style.color = prefs.textColor;
       if (prefs.fontSize) document.body.style.fontSize = prefs.fontSize;
       if (prefs.fontFamily) document.body.style.fontFamily = prefs.fontFamily;
     }
-  
+
+    // Run on every page to apply saved settings
+    const savedPrefs = {
+      bgColor: getCookie("bgColor"),
+      textColor: getCookie("textColor"),
+      fontSize: getCookie("fontSize"),
+      fontFamily: getCookie("fontFamily")
+    };
+    applyPreferences(savedPrefs);
+
+    // Handle customization form only on that page
     if (document.getElementById("customForm")) {
       const prefs = getQueryParams();
       if (prefs.bgColor || prefs.textColor || prefs.fontSize || prefs.fontFamily) {
         applyPreferences(prefs);
         Object.entries(prefs).forEach(([k, v]) => v && setCookie(k, v, 7));
-      } else {
-        applyPreferences({
-          bgColor: getCookie("bgColor"),
-          textColor: getCookie("textColor"),
-          fontSize: getCookie("fontSize"),
-          fontFamily: getCookie("fontFamily")
-        });
       }
     }
-  
+      
     // ----------------------
     // 5. Cat API (Fetch & XHR)
     // ----------------------
@@ -159,73 +162,73 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
     
-  // ----------------------
-  // 6. ES6 Class (Task Manager)
-  // ----------------------
-  if (document.getElementById("createTask")) {
-    class Task {
-      constructor(title, description) {
-        this.title = title;
-        this.description = description;
-        this.completed = false;
+    // ----------------------
+    // 6. ES6 Class (Task Manager)
+    // ----------------------
+    if (document.getElementById("createTask")) {
+      class Task {
+        constructor(title, description) {
+          this.title = title;
+          this.description = description;
+          this.completed = false;
+        }
+
+        markCompleted() {
+          this.completed = true;
+        }
+
+        updateDetails(title, description) {
+          this.title = title;
+          this.description = description;
+        }
       }
 
-      markCompleted() {
-        this.completed = true;
+      const taskArray = [];
+      const taskTable = document.querySelector("#taskList tbody");
+
+      function renderTasks() {
+        taskTable.innerHTML = "";
+        taskArray.forEach((task, i) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${task.title}</td>
+            <td>${task.description} ${task.completed ? '✅' : '❌'}</td>
+            <td><button class="task-small" onclick="markComplete(${i})">Complete</button></td>
+            <td><button class="task-small" onclick="updateTask(${i})">Edit</button></td>
+            <td><button class="task-small" onclick="deleteTask(${i})">Delete</button></td>
+          `;
+          taskTable.appendChild(row);
+        });
       }
 
-      updateDetails(title, description) {
-        this.title = title;
-        this.description = description;
-      }
-    }
+      window.markComplete = i => {
+        taskArray[i].markCompleted();
+        renderTasks();
+      };
 
-    const taskArray = [];
-    const taskTable = document.querySelector("#taskList tbody");
+      window.updateTask = i => {
+        const newTitle = prompt("New title:", taskArray[i].title);
+        const newDesc = prompt("New description:", taskArray[i].description);
+        if (newTitle && newDesc) {
+          taskArray[i].updateDetails(newTitle, newDesc);
+          renderTasks();
+        }
+      };
 
-    function renderTasks() {
-      taskTable.innerHTML = "";
-      taskArray.forEach((task, i) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${task.title}</td>
-          <td>${task.description} ${task.completed ? '✅' : '❌'}</td>
-          <td><button class="task-small" onclick="markComplete(${i})">Complete</button></td>
-          <td><button class="task-small" onclick="updateTask(${i})">Edit</button></td>
-          <td><button class="task-small" onclick="deleteTask(${i})">Delete</button></td>
-        `;
-        taskTable.appendChild(row);
+      window.deleteTask = i => {
+        taskArray.splice(i, 1);
+        renderTasks();
+      };
+
+      document.getElementById("createTask").addEventListener("click", () => {
+        const title = document.getElementById("taskTitle").value;
+        const desc = document.getElementById("taskDesc").value;
+        if (title && desc) {
+          taskArray.push(new Task(title, desc));
+          renderTasks();
+        }
       });
     }
-
-    window.markComplete = i => {
-      taskArray[i].markCompleted();
-      renderTasks();
-    };
-
-    window.updateTask = i => {
-      const newTitle = prompt("New title:", taskArray[i].title);
-      const newDesc = prompt("New description:", taskArray[i].description);
-      if (newTitle && newDesc) {
-        taskArray[i].updateDetails(newTitle, newDesc);
-        renderTasks();
-      }
-    };
-
-    window.deleteTask = i => {
-      taskArray.splice(i, 1);
-      renderTasks();
-    };
-
-    document.getElementById("createTask").addEventListener("click", () => {
-      const title = document.getElementById("taskTitle").value;
-      const desc = document.getElementById("taskDesc").value;
-      if (title && desc) {
-        taskArray.push(new Task(title, desc));
-        renderTasks();
-      }
-    });
-  }
 
     
     // ----------------------
