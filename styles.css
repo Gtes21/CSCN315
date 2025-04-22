@@ -77,6 +77,13 @@ nav a:hover {
   margin: 20px auto;
 }
 
+.clickable-image1 {
+  display: block;
+  width: 6em;
+  height: auto;
+  margin: 20px auto;
+}
+
 #imageOverlay {
   position: fixed;
   top: 0; left: 0;
