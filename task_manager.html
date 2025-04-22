@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Task Manager</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav class="center">
+  <nav>
     <a href="index.html">Home</a> |
     <a href="education.html">Education</a> |
     <a href="experience.html">Experience</a> |
@@ -22,14 +22,21 @@
     </div>
   </nav>
 
-  <h1>Task Management</h1>
+  <main>
+    <h1>Task Manager</h1>
+    <p><em>This page demonstrates the use of JavaScript ES6 Classes to create, update, and display task objects.</em></p>
 
-  <input type="text" id="taskTitle" placeholder="Task Title">
-  <input type="text" id="taskDesc" placeholder="Task Description">
-  <button id="createTask">Create Task</button>
+    <input type="text" id="taskTitle" placeholder="Task Title">
+    <input type="text" id="taskDesc" placeholder="Task Description">
+    <button id="createTask">Create Task</button>
 
-  <h2>Tasks:</h2>
-  <ul id="taskList"></ul>
+    <h2>Task List:</h2>
+    <ul id="taskList"></ul>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sangcheon Kim. All rights reserved.</p>
+  </footer>
 
   <script src="final.js" defer></script>
 </body>

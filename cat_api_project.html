@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Cat API Viewer</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav class="center">
+  <nav>
     <a href="index.html">Home</a> |
     <a href="education.html">Education</a> |
     <a href="experience.html">Experience</a> |
@@ -22,23 +22,30 @@
     </div>
   </nav>
 
-  <h1>Meow Viewer with Cat API 🐾</h1>
+  <main>
+    <h1>Cat API Viewer</h1>
+    <p><em>This page demonstrates API data fetching using both Fetch and XMLHttpRequest to load random cat images.</em></p>
 
-  <button id="loadCats">Load Cats</button>
+    <button id="loadCats">Load Cats</button>
 
-  <div class="cat-container">
-    <div class="cat-box">
-      <h2>Cat via <code>fetch()</code></h2>
-      <img id="fetchCat" src="" alt="Random Cat (Fetch)">
-      <p id="fetchError" class="error"></p>
+    <div class="cat-container">
+      <div class="cat-box">
+        <h2>Using <code>fetch()</code></h2>
+        <img id="fetchCat" src="" alt="Random Cat (Fetch)">
+        <p id="fetchError" class="error"></p>
+      </div>
+
+      <div class="cat-box">
+        <h2>Using <code>XMLHttpRequest</code></h2>
+        <img id="xhrCat" src="" alt="Random Cat (XHR)">
+        <p id="xhrError" class="error"></p>
+      </div>
     </div>
+  </main>
 
-    <div class="cat-box">
-      <h2>Cat via <code>XMLHttpRequest</code></h2>
-      <img id="xhrCat" src="" alt="Random Cat (XHR)">
-      <p id="xhrError" class="error"></p>
-    </div>
-  </div>
+  <footer>
+    <p>&copy; 2025 Sangcheon Kim. All rights reserved.</p>
+  </footer>
 
   <script src="final.js" defer></script>
 </body>

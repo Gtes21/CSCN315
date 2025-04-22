@@ -229,5 +229,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("scoreTable")) {
       // sample logic if needed
     }
+    
+    // ----------------------
+    // 8. Experience Page Toggle
+    // ----------------------
+    document.querySelectorAll(".experience-box").forEach(box => {
+      const summary = box.querySelector(".summary");
+      const details = box.querySelector(".details");
+
+      details.style.display = "none";
+      summary.style.cursor = "pointer";
+
+      summary.addEventListener("click", () => {
+        details.style.display = details.style.display === "none" ? "block" : "none";
+      });
+    });
   });
   

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Customize Page</title>
+  <meta charset="UTF-8" />
+  <title>Customize</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav class="center">
+  <nav>
     <a href="index.html">Home</a> |
     <a href="education.html">Education</a> |
     <a href="experience.html">Experience</a> |
@@ -22,18 +22,48 @@
     </div>
   </nav>
 
-  <h1>Customize This Page</h1>
+  <main>
+    <h1>Customize Page</h1>
+    <p><em>This page demonstrates cookie handling and URL parameters to customize background color, font size, and text color.</em></p>
 
-  <form id="customForm" action="customize.html" method="GET">
-    <label>Background Color:
-      <input type="color" name="bgColor" value="#ffffff">
-    </label><br>
+    <form id="customForm" method="GET" action="customize.html">
+      <label>Background Color:
+        <input type="color" name="bgColor" value="#ffffff">
+      </label><br>
 
-    <label>Text Color:
-      <input type="color" name="textColor" value="#000000">
-    </label><br>
+      <label>Text Color:
+        <input type="color" name="textColor" value="#000000">
+      </label><br>
 
-    <label>Font Size:
-      <select name="fontSize">
-        <option value="16px">16px</option>
-        <option value="18px">18px</option>
+      <label>Font Size:
+        <select name="fontSize">
+          <option value="16px">16px</option>
+          <option value="18px">18px</option>
+          <option value="20px">20px</option>
+          <option value="24px">24px</option>
+        </select>
+      </label><br>
+
+      <label>Font Family:
+        <select name="fontFamily">
+          <option value="Arial, sans-serif">Arial</option>
+          <option value="Georgia, serif">Georgia</option>
+          <option value="Courier New, monospace">Courier New</option>
+          <option value="Tahoma, sans-serif">Tahoma</option>
+          <option value="Verdana, sans-serif">Verdana</option>
+        </select>
+      </label><br>
+
+      <button type="submit">Apply</button>
+    </form>
+
+    <p>This text reflects your preferences set by cookies or URL query parameters.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sangcheon Kim. All rights reserved.</p>
+  </footer>
+
+  <script src="final.js" defer></script>
+</body>
+</html>

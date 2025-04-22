@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>User Form</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav class="center">
+  <nav>
     <a href="index.html">Home</a> |
     <a href="education.html">Education</a> |
     <a href="experience.html">Experience</a> |
@@ -22,21 +22,28 @@
     </div>
   </nav>
 
-  <h1>Registration Form</h1>
+  <main>
+    <h1>User Registration</h1>
+    <p><em>This page demonstrates JavaScript form validation, including regex checks and logic enforcement.</em></p>
 
-  <form name="registrationForm">
-    <input type="text" name="fullName" placeholder="Full Name"><br>
-    <input type="text" name="username" placeholder="Username"><br>
-    <input type="email" name="email" placeholder="Email"><br>
-    <input type="password" name="password" placeholder="Password"><br>
-    <input type="password" name="confirmPassword" placeholder="Confirm Password"><br>
-    <input type="text" name="phoneNumber" placeholder="Phone (e.g. 123-456-7890)"><br>
-    <input type="date" name="dob"><br>
-    <label><input type="checkbox" name="agreeTerms"> Agree to terms</label><br>
-    <button type="submit">Register</button>
-  </form>
+    <form name="registrationForm">
+      <input type="text" name="fullName" placeholder="Full Name"><br>
+      <input type="text" name="username" placeholder="Username"><br>
+      <input type="email" name="email" placeholder="Email"><br>
+      <input type="password" name="password" placeholder="Password"><br>
+      <input type="password" name="confirmPassword" placeholder="Confirm Password"><br>
+      <input type="text" name="phoneNumber" placeholder="Phone (e.g. 123-456-7890)"><br>
+      <input type="date" name="dob"><br>
+      <label><input type="checkbox" name="agreeTerms"> Agree to terms</label><br>
+      <button type="submit">Register</button>
+    </form>
 
-  <div id="formErrors" style="color:red;"></div>
+    <div id="formErrors" style="color:red;"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sangcheon Kim. All rights reserved.</p>
+  </footer>
 
   <script src="final.js" defer></script>
 </body>

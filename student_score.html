@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Student Score</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <nav class="center">
+  <nav>
     <a href="index.html">Home</a> |
     <a href="education.html">Education</a> |
     <a href="experience.html">Experience</a> |
@@ -22,22 +22,21 @@
     </div>
   </nav>
 
-  <h1>Student Score Display</h1>
+  <main>
+    <h1>Student Score Table</h1>
+    <p><em>This page demonstrates dynamic table rendering and data display using HTML and JS.</em></p>
 
-  <table id="scoreTable" border="1" style="margin:auto;">
-    <tr>
-      <th>Name</th>
-      <th>Score</th>
-    </tr>
-    <tr>
-      <td>Alice</td>
-      <td>88</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>92</td>
-    </tr>
-  </table>
+    <table>
+      <tr><th>Name</th><th>Score</th></tr>
+      <tr><td>Shane</td><td>92</td></tr>
+      <tr><td>Minji</td><td>87</td></tr>
+      <tr><td>James</td><td>78</td></tr>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sangcheon Kim. All rights reserved.</p>
+  </footer>
 
   <script src="final.js" defer></script>
 </body>
