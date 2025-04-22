@@ -158,70 +158,73 @@ document.addEventListener("DOMContentLoaded", () => {
         xhr.send();
       });
     }
-  
-    // ----------------------
-    // 6. ES6 Class (Task Manager)
-    // ----------------------
-    if (document.getElementById("createTask")) {
-      class Task {
-        constructor(title, description) {
-          this.title = title;
-          this.description = description;
-          this.completed = false;
-        }
-  
-        markCompleted() {
-          this.completed = true;
-        }
-  
-        updateDetails(title, description) {
-          this.title = title;
-          this.description = description;
-        }
-  
-        getSummary() {
-          return `${this.title}: ${this.description} [${this.completed ? 'Completed' : 'Pending'}]`;
-        }
+    
+  // ----------------------
+  // 6. ES6 Class (Task Manager)
+  // ----------------------
+  if (document.getElementById("createTask")) {
+    class Task {
+      constructor(title, description) {
+        this.title = title;
+        this.description = description;
+        this.completed = false;
       }
-  
-      const taskArray = [];
-      const taskList = document.getElementById("taskList");
-  
-      function renderTasks() {
-        taskList.innerHTML = "";
-        taskArray.forEach((task, i) => {
-          const li = document.createElement("li");
-          li.innerHTML = `
-            <strong>${task.title}</strong> - ${task.description} [${task.completed ? '✅' : '❌'}]
-            <button onclick="markComplete(${i})">Complete</button>
-            <button onclick="updateTask(${i})">Edit</button>
-            <button onclick="alert('${task.getSummary()}')">Summary</button>`;
-          taskList.appendChild(li);
-        });
+
+      markCompleted() {
+        this.completed = true;
       }
-  
-      window.markComplete = i => {
-        taskArray[i].markCompleted();
-        renderTasks();
-      };
-      window.updateTask = i => {
-        const newTitle = prompt("New title:", taskArray[i].title);
-        const newDesc = prompt("New description:", taskArray[i].description);
-        if (newTitle && newDesc) {
-          taskArray[i].updateDetails(newTitle, newDesc);
-          renderTasks();
-        }
-      };
-  
-      document.getElementById("createTask").addEventListener("click", () => {
-        const title = document.getElementById("taskTitle").value;
-        const desc = document.getElementById("taskDesc").value;
-        if (title && desc) {
-          taskArray.push(new Task(title, desc));
-          renderTasks();
-        }
+
+      updateDetails(title, description) {
+        this.title = title;
+        this.description = description;
+      }
+    }
+
+    const taskArray = [];
+    const taskList = document.getElementById("taskList");
+
+    function renderTasks() {
+      taskList.innerHTML = "";
+      taskArray.forEach((task, i) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <strong>${task.title}</strong> - ${task.description} ${task.completed ? '✅' : '❌'}
+          <button class="task-small" onclick="markComplete(${i})">Complete</button>
+          <button class="task-small" onclick="updateTask(${i})">Edit</button>
+          <button class="task-small" onclick="deleteTask(${i})">Delete</button>`;
+        taskList.appendChild(li);
       });
     }
+
+    window.markComplete = i => {
+      taskArray[i].markCompleted();
+      renderTasks();
+    };
+
+    window.updateTask = i => {
+      const newTitle = prompt("New title:", taskArray[i].title);
+      const newDesc = prompt("New description:", taskArray[i].description);
+      if (newTitle && newDesc) {
+        taskArray[i].updateDetails(newTitle, newDesc);
+        renderTasks();
+      }
+    };
+
+    window.deleteTask = i => {
+      taskArray.splice(i, 1);
+      renderTasks();
+    };
+
+    document.getElementById("createTask").addEventListener("click", () => {
+      const title = document.getElementById("taskTitle").value;
+      const desc = document.getElementById("taskDesc").value;
+      if (title && desc) {
+        taskArray.push(new Task(title, desc));
+        renderTasks();
+      }
+    });
+  }
+
     
     // ----------------------
     // 7. Experience Page Toggle

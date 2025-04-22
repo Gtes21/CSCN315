@@ -281,6 +281,21 @@ footer {
   margin: 10px auto;
 }
 
+.task-small {
+  padding: 4px 10px;
+  margin: 4px;
+  font-size: 14px;
+  background-color: #0092c7;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.task-small:hover {
+  background-color: #007bb2;
+}
+
 /* puzzle game style */
 #imageInput {
   display: block;
