@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>User Form</title>
+  <title>Puzzle Game</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,22 +23,15 @@
     </div>
   </nav>
 
-  <h1>Registration Form</h1>
+  <h1>Drag-and-Drop Puzzle Game 🧩</h1>
 
-  <form name="registrationForm">
-    <input type="text" name="fullName" placeholder="Full Name"><br>
-    <input type="text" name="username" placeholder="Username"><br>
-    <input type="email" name="email" placeholder="Email"><br>
-    <input type="password" name="password" placeholder="Password"><br>
-    <input type="password" name="confirmPassword" placeholder="Confirm Password"><br>
-    <input type="text" name="phoneNumber" placeholder="Phone (e.g. 123-456-7890)"><br>
-    <input type="date" name="dob"><br>
-    <label><input type="checkbox" name="agreeTerms"> Agree to terms</label><br>
-    <button type="submit">Register</button>
-  </form>
-
-  <div id="formErrors" style="color:red;"></div>
+  <input type="file" id="imageInput" accept="image/*">
+  <button id="resetBtn">🔁 Reset</button>
+  <div id="timer">Time: 0s</div>
+  <div id="message"></div>
+  <div id="puzzle-board" class="puzzle-board"></div>
 
   <script src="final.js" defer></script>
+  <script src="final2.js" defer></script>
 </body>
 </html>

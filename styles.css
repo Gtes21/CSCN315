@@ -1,144 +1,97 @@
-/* External CSS file for website */
-
-/* General styles for the body */
+/* Basic Page Styling */
 body {
-    background-color: lightblue;
-    margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  h1, h2 {
     text-align: center;
-    padding: 20px;
-}
-
-/* Styling for navigation bar */
-nav {
+  }
+  
+  /* Navigation */
+  nav {
+    position: relative;
     background-color: #333;
     padding: 10px;
-}
-nav a {
+    margin-bottom: 20px;
+  }
+  
+  nav a {
     color: white;
-    margin: 10px;
+    margin-right: 15px;
     text-decoration: none;
-    font-weight: bold;
-}
-nav a:hover {
+  }
+  
+  nav a:hover {
     text-decoration: underline;
-}
-
-/* Class to center elements */
-.center {
-    margin: 0 auto;
-    text-align: center;
-}
-
-/* ID for specific sections */
-#highlight {
-    color: blue;
-    text-decoration: underline;
-}
-
-/* Styling for buttons */
-button {
-    background-color: #008CBA;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 16px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #005f73;
-}
-
-/* Responsive design using media queries */
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-    h1 {
-        font-size: 20px;
-    }
-    p {
-        font-size: 12px;
-    }
-}
-
-/* Styling for overlay */
-#imageOverlay {
+  }
+  
+  #collectionMenu {
+    display: none;
     position: absolute;
-    top: 80px; /* Ensures it starts below the navigation bar */
-    text-align: center;
-}
-
-#imageOverlay img {
-    width: 100%;
-    max-width: 600px; /* Ensures image doesn't stretch */
-    transition: transform 0.2s ease-in-out;
-}
-
-#imageOverlay img:hover {
-    transform: scale(1.02);
-}
-
-/* Ensure images fit within the body without overflowing */
-.clickable-image {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    top: 40px;
+    left: 200px;
+    z-index: 999;
+  }
+  
+  #collectionMenu a {
     display: block;
-    width: 6em;
-    height: auto; /* Maintain aspect ratio */
-    margin: 20px auto; /* Center the image with spacing */
-}
-
-.puzzle-board {
+    margin-bottom: 5px;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  #collectionMenu a:hover {
+    background-color: #eaeaea;
+  }
+  
+  /* Form Styling */
+  form {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  input, select, button {
+    padding: 8px;
+    margin: 5px;
+    font-size: 16px;
+  }
+  
+  /* Table Styling (Student Score) */
+  table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 60%;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Puzzle Board */
+  .puzzle-board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
-    gap: 0;
-    margin: 20px auto; /* Center the grid */
+    gap: 1px;
     justify-content: center;
-}
+    margin-top: 20px;
+  }
   
-.drop-zone {
+  .puzzle-tile, .drop-zone {
     width: 100px;
     height: 100px;
-    border: 1px solid transparent;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-  
-.puzzle-tile {
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: 300px 300px;
-    background-position: center;
-    cursor: grab;
-}
-
-.dragover {
-    border: 2px solid #0077ff;
-}
-
-#controls {
-    margin-bottom: 20px;
-}
-
-#message {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    color: green;
-}
-    
-h1 {
-    color: #333;
+    border: 1px dashed #aaa;
+    box-sizing: border-box;
   }
-
-.cat-container {
+  
+  /* Cat API Viewer */
+  .cat-container {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -146,7 +99,7 @@ h1 {
     margin-top: 30px;
   }
   
-.cat-box {
+  .cat-box {
     background: #fff;
     border: 2px solid #ccc;
     border-radius: 10px;
@@ -155,12 +108,30 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-.cat-box img {
+  .cat-box img {
     max-width: 100%;
     border-radius: 8px;
   }
   
-.error {
+  .error {
     color: red;
     margin-top: 10px;
   }
+  
+  /* Overlay Image */
+  #imageOverlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  #imageOverlay img {
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
