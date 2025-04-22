@@ -222,16 +222,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
-  
-    // ----------------------
-    // 7. Index Dark Mode
-    // ----------------------
-    function changeColor() {
-      document.body.classList.toggle("dark");
-    }
     
     // ----------------------
-    // 8. Experience Page Toggle
+    // 7. Experience Page Toggle
     // ----------------------
     document.querySelectorAll(".experience-box").forEach(box => {
       const summary = box.querySelector(".summary");
@@ -246,3 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+  //change background color into dark mode in index.
+  function changeColor() {
+    document.body.classList.toggle("dark");
+  }

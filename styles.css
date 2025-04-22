@@ -44,12 +44,16 @@ nav a:hover {
   text-decoration: underline;
 }
 
+#collectionWrapper {
+  display: inline-block;
+  position: relative;
+}
+
 #collectionMenu {
   display: none;
   position: absolute;
-  top: 45px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 100%;
+  left: 0;
   background-color: #f1f1f1;
   border: 1px solid #ccc;
   padding: 10px;
