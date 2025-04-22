@@ -13,10 +13,6 @@ body.dark {
   color: white;
 }
 
-body.dark nav {
-  background-color: white;
-}
-
 body.dark #collectionMenu {
   background-color: #333;
   color: white;
