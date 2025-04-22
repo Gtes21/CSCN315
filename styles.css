@@ -72,7 +72,7 @@ nav a:hover {
 /* Image and Overlay */
 .clickable-image {
   display: block;
-  width: 20em;
+  width: 24em;
   height: auto;
   margin: 20px auto;
 }
@@ -247,6 +247,7 @@ footer {
   }
 }
 
+/* experience box styles */
 .experience-box {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -267,14 +268,23 @@ footer {
   padding-left: 10px;
 }
 
-/* Resize puzzle reset button */
-#resetBtn {
-  padding: 8px 14px;
-  font-size: 14px;
-}
-
 /* Task Manager size fix */
 #taskTitle, #taskDesc, #createTask {
   max-width: 300px;
+  margin: 10px auto;
+}
+
+/* puzzle game style */
+#imageInput {
+  display: block;
+  margin: 0 auto 10px auto;
+  max-width: 300px;
+}
+
+#resetBtn {
+  padding: 6px 12px;
+  font-size: 14px;
+  width: auto;
+  display: inline-block;
   margin: 10px auto;
 }
