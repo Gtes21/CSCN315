@@ -7,47 +7,37 @@ body {
   padding: 20px;
 }
 
+/* Dark mode */
+body.dark {
+  background-color: #111;
+  color: white;
+}
+
+body.dark nav {
+  background-color: #222;
+}
+
+body.dark #collectionMenu {
+  background-color: #333;
+  color: white;
+}
+
+
 /* Navigation Bar */
 nav {
-  background-color: #333;
-  padding: 10px;
-  text-align: center;
   position: relative;
 }
 
-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-nav a:hover {
-  text-decoration: underline;
+#collectionWrapper {
+  display: inline-block;
+  position: relative;
 }
 
 #collectionMenu {
-  display: none;
   position: absolute;
-  top: 45px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-  padding: 10px;
-  z-index: 999;
-  text-align: left;
-}
-
-#collectionMenu a {
-  display: block;
-  margin: 5px 0;
-  color: #000;
-  text-decoration: none;
-}
-
-#collectionMenu a:hover {
-  background-color: #eaeaea;
+  top: 100%;
+  left: 0;
+  transform: none;
 }
 
 /* Image and Overlay */
@@ -84,6 +74,14 @@ form {
   display: inline-block;
   text-align: left;
   margin: 20px auto;
+}
+
+.center-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
 }
 
 input, select, button {
@@ -240,3 +238,14 @@ footer {
   padding-left: 10px;
 }
 
+/* Resize puzzle reset button */
+#resetBtn {
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+/* Task Manager size fix */
+#taskTitle, #taskDesc, #createTask {
+  max-width: 300px;
+  margin: 10px auto;
+}

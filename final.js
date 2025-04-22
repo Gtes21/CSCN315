@@ -224,10 +224,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     // ----------------------
-    // 7. Student Score Table
+    // 7. Index Dark Mode
     // ----------------------
-    if (document.getElementById("scoreTable")) {
-      // sample logic if needed
+    function changeColor() {
+      document.body.classList.toggle("dark");
     }
     
     // ----------------------
