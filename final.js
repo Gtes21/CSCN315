@@ -181,18 +181,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const taskArray = [];
-    const taskList = document.getElementById("taskList");
+    const taskTable = document.querySelector("#taskList tbody");
 
     function renderTasks() {
-      taskList.innerHTML = "";
+      taskTable.innerHTML = "";
       taskArray.forEach((task, i) => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <strong>${task.title}</strong> - ${task.description} ${task.completed ? '✅' : '❌'}
-          <button class="task-small" onclick="markComplete(${i})">Complete</button>
-          <button class="task-small" onclick="updateTask(${i})">Edit</button>
-          <button class="task-small" onclick="deleteTask(${i})">Delete</button>`;
-        taskList.appendChild(li);
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${task.title}</td>
+          <td>${task.description} ${task.completed ? '✅' : '❌'}</td>
+          <td><button class="task-small" onclick="markComplete(${i})">Complete</button></td>
+          <td><button class="task-small" onclick="updateTask(${i})">Edit</button></td>
+          <td><button class="task-small" onclick="deleteTask(${i})">Delete</button></td>
+        `;
+        taskTable.appendChild(row);
       });
     }
 
