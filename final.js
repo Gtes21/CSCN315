@@ -273,36 +273,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----------------------
     // 12. Chart.js (Skills Chart) on chart_page.html
     // ----------------------
-    document.addEventListener("DOMContentLoaded", function() {
-      if (document.getElementById("skillsChart")) {
-        const ctx = document.getElementById("skillsChart").getContext('2d');
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['HTML', 'CSS', 'JavaScript', 'Python', 'Java'],
-            datasets: [{
-              label: 'Skill Level',
-              data: [90, 85, 95, 80, 70],
-              backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56',
-                '#4BC0C0',
-                '#9966FF'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
+    if (document.getElementById("skillsChart")) {
+      const ctx = document.getElementById("skillsChart").getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['HTML', 'CSS', 'JavaScript', 'Python', 'Java'],
+          datasets: [{
+            label: 'Skill Level',
+            data: [90, 85, 95, 80, 70],
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+              '#4BC0C0',
+              '#9966FF'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
             }
           }
-        });
-      }
-    });
+        }
+      });
+    }
   });
   
   //change background color into dark mode in index.
