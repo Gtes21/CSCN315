@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cat API Viewer</title>
+  <title>Skills Chart</title>
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- final.js already included -->
+  <script src="final.js" defer></script>
 </head>
 <body>
 
@@ -19,36 +25,22 @@
         <a href="cat_api_project.html">Cat API Viewer</a>
         <a href="customize.html">Customize</a>
         <a href="task_manager.html">Task Manager</a>
+        <a href="jquery_effects.html">jQuery Effects</a>
         <a href="chart_page.html">Chart Page</a>
       </div>
     </span>
   </nav>
 
   <main>
-    <h1>Cat API Viewer</h1>
-    <p><em>This page demonstrates API data fetching using both Fetch and XMLHttpRequest to load random cat images.</em></p>
+    <h1>Skills Overview</h1>
+    <p><em>This page demonstrates using an external library, Chart.js, to visualize data in a bar chart.</em></p>
 
-    <button id="loadCats">Load Cats</button>
-
-    <div class="cat-container">
-      <div class="cat-box">
-        <h2>Using <code>fetch()</code></h2>
-        <img id="fetchCat" src="" alt="Random Cat (Fetch)">
-        <p id="fetchError" class="error"></p>
-      </div>
-
-      <div class="cat-box">
-        <h2>Using <code>XMLHttpRequest</code></h2>
-        <img id="xhrCat" src="" alt="Random Cat (XHR)">
-        <p id="xhrError" class="error"></p>
-      </div>
-    </div>
+    <canvas id="skillsChart" width="400" height="400" style="margin-top:20px;"></canvas>
   </main>
 
   <footer>
     <p>&copy; 2025 Sangcheon Kim. All rights reserved.</p>
   </footer>
 
-  <script src="final.js" defer></script>
 </body>
 </html>

@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <title>Home</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 </head>
 <body>
 
@@ -19,6 +22,7 @@
         <a href="cat_api_project.html">Cat API Viewer</a>
         <a href="customize.html">Customize</a>
         <a href="task_manager.html">Task Manager</a>
+        <a href="chart_page.html">Chart Page</a>
       </div>
     </span>
   </nav>
@@ -37,6 +41,15 @@
 
     <button onclick="changeColor()">Apply Dark Mode</button>
 
+    <!-- Buttons for jQuery Effects -->
+    <button id="fadeBtn">Fade In Image</button>
+    <button id="slideBtn">Slide Toggle Info</button>
+
+    <div id="effectBox" style="width:150px;height:150px;background-color:skyblue;display:none;margin:20px auto;"></div>
+
+    <!-- Autosuggest Input -->
+    <h2>Search Skills</h2>
+    <input id="searchInput" type="text" placeholder="Start typing..." style="margin-top:10px;">
   </main>
 
   <footer>
